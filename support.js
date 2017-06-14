@@ -32,15 +32,15 @@ function getNumberBackgroundColor(number){
 }
 
 function getNumberColor(number){
-	if(number<=4){
+	if(number <= 4){
 		return "#776e65";
 	}
 	return "white";
 }
 
 function nospace(board){
-	for(var i =0; i<4; i++){
-		for(var j=0; j<4; j++){
+	for(var i = 0; i < 4; i ++){
+		for(var j = 0; j < 4; j ++){
 			if(board[i][j] == 0){
 				return false;
 			}
@@ -50,10 +50,10 @@ function nospace(board){
 }
 
 function canMoveLeft(board){
-	for(var i=0; i<4; i++){
-		for(var j=1; j<4; j++){
-			if (board[i][j] !=0) {
-				if (board[i][j-1] ==0 || board[i][j-1] == board[i][j]) {
+	for(var i = 0; i < 4; i ++){
+		for(var j = 1; j < 4; j ++){
+			if (board[i][j] != 0) {
+				if (board[i][j-1] == 0 || board[i][j-1] == board[i][j]) {
 					return true;
 				}
 			}
@@ -63,10 +63,10 @@ function canMoveLeft(board){
 }
 
 function canMoveRight(board){
-	for(var i=0; i<4; i++){
-		for(var j=2; j>=0; j--){
-			if (board[i][j] !=0) {
-				if (board[i][j+1] ==0 || board[i][j+1] == board[i][j]) {
+	for(var i = 0; i < 4; i ++){
+		for(var j = 2; j >= 0; j --){
+			if (board[i][j] != 0) {
+				if (board[i][j+1] == 0 || board[i][j+1] == board[i][j]) {
 					return true;
 				}
 			}
@@ -76,10 +76,10 @@ function canMoveRight(board){
 }
 
 function canMoveUp(board){
-	for(var j=0; j<4; j++){
-		for(var i=1; i<4; i++){
-			if (board[i][j] !=0) {
-				if (board[i-1][j] ==0 || board[i-1][j] == board[i][j]) {
+	for(var j = 0; j < 4; j ++){
+		for(var i = 1; i < 4; i ++){
+			if (board[i][j] != 0) {
+				if (board[i-1][j] == 0 || board[i-1][j] == board[i][j]) {
 					return true;
 				}
 			}
@@ -89,9 +89,9 @@ function canMoveUp(board){
 }
 
 function canMoveDown(board){
-	for(var j=0; j<4; j++){
-		for(var i=2; i>=0; i--){
-			if (board[i][j] !=0) {
+	for(var j = 0; j < 4; j ++){
+		for(var i = 2; i >= 0; i --){
+			if (board[i][j] != 0) {
 				if (board[i+1][j] == 0 || board[i+1][j] == board[i][j]) {
 					return true;
 				}
@@ -102,7 +102,7 @@ function canMoveDown(board){
 }
 
 function noBlockHorizontal(row, col1, col2, board){
-	for(var i=col1+1; i<col2; i++){
+	for(var i = col1 + 1; i < col2; i ++){
 		if (board[row][i] != 0) {
 			return false;
 		}
@@ -111,7 +111,7 @@ function noBlockHorizontal(row, col1, col2, board){
 }
 
 function noBlockVertical(col, row1, row2, board){
-    for( var i=row1+1; i<row2; i++)
+    for( var i = row1 + 1; i < row2; i ++)
         if(board[i][col] != 0)
             return false;
     return true;
