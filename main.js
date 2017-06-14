@@ -15,15 +15,15 @@ function prepareForMobile(){
 	if (documentWidth > 500) {
 		gridContainerWidth = 500;
 		cellSpace = 20;
-		cellSlideLength = 100;
+		cellSideLength = 100;
 	}
 	$('#grid-container').css('width', gridContainerWidth - 2*cellSpace);
 	$('#grid-container').css('height', gridContainerWidth - 2*cellSpace);
 	$('#grid-container').css('padding', cellSpace);
 	$('#grid-container').css('border-radius', 0.02*gridContainerWidth);
-	$('.grid-cell').css('width', cellSlideLength);
-	$('.grid-cell').css('height', cellSlideLength);
-	$('.grid-cell').css('border-radius', 0.02*cellSlideLength);
+	$('.grid-cell').css('width', cellSideLength);
+	$('.grid-cell').css('height', cellSideLength);
+	$('.grid-cell').css('border-radius', 0.02*cellSideLength);
 }
 
 function newgame(){
@@ -64,14 +64,14 @@ function updateBoardView(){
 			var theNumberCell = $('#number-cell-'+i+'-'+j);
 
 			if(board[i][j] == 0){
-				theNumberCell.css('width','0px');
-				theNumberCell.css('height','0px');
-				theNumberCell.css('top', getPosTop(i,j)+50);
-				theNumberCell.css('left', getPosLeft(i,j)+50);
+				theNumberCell.css('width', '0px');
+				theNumberCell.css('height', '0px');
+				theNumberCell.css('top', getPosTop(i, j) + cellSideLength/2);
+				theNumberCell.css('left', getPosLeft(i, j) + cellSideLength/2);
 			}
 			else{
-				theNumberCell.css('width','100px');
-				theNumberCell.css('height','100px');
+				theNumberCell.css('width', cellSideLength);
+				theNumberCell.css('height', cellSideLength);
 				theNumberCell.css('top', getPosTop(i,j));
 				theNumberCell.css('left', getPosLeft(i,j));
 				theNumberCell.css('background-color', getNumberBackgroundColor(board[i][j]));
@@ -81,6 +81,8 @@ function updateBoardView(){
 		}
 		hasConflicted[i][j] = false;
 	}
+	$('.number-cell').css('line-height', cellSideLength + 'px');
+	$('.number-cell').css('font-size', 0.6*cellSideLength + 'px');
 }
 
 function generateOneNumber(){
@@ -119,27 +121,31 @@ function generateOneNumber(){
 }
 
 $(document).keydown(function(event){
-	event.preventDefault();
+	
 	switch(event.keyCode){
 		case 37: //left
+			event.preventDefault();
 			if(moveLeft()){
 				generateOneNumber();
 				isgameover();
 			}
 			break;
 		case 38: //up
+			event.preventDefault();
 			if(moveUp()){
 				generateOneNumber();
 				isgameover();
 			}
 			break;
 		case 39: //right
+			event.preventDefault();
 			if(moveRight()){
 				generateOneNumber();
 				isgameover();
 			}
 			break;
 		case 40: //down
+			event.preventDefault();
 			if(moveDown()){
 				generateOneNumber();
 				isgameover();
@@ -153,6 +159,10 @@ $(document).keydown(function(event){
 document.addEventListener('touchstart', function(event){
 	startx = event.touches[0].pageX;
 	starty = event.touches[0].pageY;
+});
+
+document.addEventListener('touchmove', function(event){
+	event.preventDefault();
 });
 
 document.addEventListener('touchend', function(){
