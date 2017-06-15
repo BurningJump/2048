@@ -36,7 +36,7 @@ function newgame(){
 
 function init() {
 	for (var i = 0; i < 4; i ++) {
-		for(var j = 0; j < 4; j++){
+		for(var j = 0; j < 4; j ++){
 			var gridCell = $("#grid-cell-"+i+"-"+j);
 			gridCell.css('top', getPosTop(i, j));
 			gridCell.css('left', getPosLeft(i, j));
@@ -93,7 +93,7 @@ function generateOneNumber(){
 	var randx = parseInt(Math.floor(Math.random()*4));
 	var randy = parseInt(Math.floor(Math.random()*4));
 	var times = 0;
-	while(times < 16){
+	while(times < 50){
 		if(board[randx][randy] == 0){
 			break;
 		}
@@ -101,7 +101,7 @@ function generateOneNumber(){
 		randy = parseInt(Math.floor(Math.random()*4));
 		times ++;
 	}
-	if (times == 16) {
+	if (times == 50) {
 		for(var i = 0; i < 4; i ++){
 			for(var j = 0; j < 4; j ++){
 				if (board[i][j] == 0) {
@@ -126,29 +126,29 @@ $(document).keydown(function(event){
 		case 37: //left
 			event.preventDefault();
 			if(moveLeft()){
-				generateOneNumber();
-				isgameover();
+				setTimeout("generateOneNumber()",210);
+                setTimeout("isgameover()",300);
 			}
 			break;
 		case 38: //up
 			event.preventDefault();
 			if(moveUp()){
-				generateOneNumber();
-				isgameover();
+				setTimeout("generateOneNumber()",210);
+                setTimeout("isgameover()",300);
 			}
 			break;
 		case 39: //right
 			event.preventDefault();
 			if(moveRight()){
-				generateOneNumber();
-				isgameover();
+				setTimeout("generateOneNumber()",210);
+                setTimeout("isgameover()",300);
 			}
 			break;
 		case 40: //down
 			event.preventDefault();
 			if(moveDown()){
-				generateOneNumber();
-				isgameover();
+				setTimeout("generateOneNumber()",210);
+                setTimeout("isgameover()",300);
 			}
 			break;
 		default: //default
@@ -177,15 +177,15 @@ document.addEventListener('touchend', function(){
 		if (deltax > 0) {
 			//move right
 			if (moveRight()) {
-				setTimeout('generateOneNumber()', 210);
-				setTimeout('isgameover()', 300);
+				setTimeout("generateOneNumber()",210);
+                setTimeout("isgameover()",300);
 			}
 		}
 		else{
 			//move left
 			if (moveLeft()) {
-				setTimeout('generateOneNumber()', 210);
-				setTimeout('isgameover()', 300);
+				setTimeout("generateOneNumber()",210);
+                setTimeout("isgameover()",300);
 			}
 		}
 	}
@@ -193,15 +193,15 @@ document.addEventListener('touchend', function(){
 		if (deltay > 0) {
 			//move down
 			if (moveDown()) {
-				setTimeout('generateOneNumber()', 210);
-				setTimeout('isgameover()', 300);
+				setTimeout("generateOneNumber()",210);
+                setTimeout("isgameover()",300);
 			}
 		}
 		else{
 			//move up
 			if (moveUp()) {
-				setTimeout('generateOneNumber()', 210);
-				setTimeout('isgameover()', 300);
+				setTimeout("generateOneNumber()",210);
+                setTimeout("isgameover()",300);
 			}
 		}
 	}
@@ -226,9 +226,9 @@ function moveLeft(){
 		for(var j = 1; j < 4; j ++){
 			if (board[i][j] != 0) {
 				for(var k = 0; k < j; k ++){
-					if (board[i][k] == 0 && noBlockHorizontal(i,j,k,board)) {
+					if (board[i][k] == 0 && noBlockHorizontal(i, j, k, board)) {
 						//move
-						showMoveAnimation(i,j,i,k);
+						showMoveAnimation(i, j, i, k);
 						board[i][k] = board[i][j];
 						board[i][j] = 0;
 						continue;
@@ -333,7 +333,7 @@ function moveDown(){
 		return false;
 	}
 
-	for(var j = 0; j < 4; i ++){
+	for(var j = 0; j < 4; j ++){
 		for(var i = 2; i >= 0; i --){
 			if (board[i][j] != 0) {
 				for(var k = 3; k > i; k --){
