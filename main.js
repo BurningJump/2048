@@ -93,7 +93,7 @@ function generateOneNumber(){
 	var randx = parseInt(Math.floor(Math.random()*4));
 	var randy = parseInt(Math.floor(Math.random()*4));
 	var times = 0;
-	while(times < 50){
+	while(times < 16){
 		if(board[randx][randy] == 0){
 			break;
 		}
@@ -101,7 +101,7 @@ function generateOneNumber(){
 		randy = parseInt(Math.floor(Math.random()*4));
 		times ++;
 	}
-	if (times == 50) {
+	if (times == 16) {
 		for(var i = 0; i < 4; i ++){
 			for(var j = 0; j < 4; j ++){
 				if (board[i][j] == 0) {
